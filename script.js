@@ -1,5 +1,5 @@
 const BOT_TOKEN = '8776620555:AAEprKjWryt6soMpEU8zS0J7IiLR6156vb8'; // Замените на токен вашего бота
-const CHAT_ID = '2045877032'; // Замените на ID вашего канала
+const CHAT_ID = '-1003781986877'; // Замените на ID вашего канала
 const MESSAGES_COUNT = 5; // Количество последних сообщений для отображения
 const UPDATE_INTERVAL = 5 * 60 * 1000; // 5 минут в миллисекундах
 
