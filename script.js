@@ -1,5 +1,5 @@
-const BOT_TOKEN = 'YOUR_BOT_TOKEN'; // Замените на токен вашего бота
-const CHAT_ID = 'YOUR_CHANNEL_ID'; // Замените на ID вашего канала
+const BOT_TOKEN = '8776620555:AAEprKjWryt6soMpEU8zS0J7IiLR6156vb8'; // Замените на токен вашего бота
+const CHAT_ID = '2045877032'; // Замените на ID вашего канала
 const MESSAGES_COUNT = 5; // Количество последних сообщений для отображения
 
 async function fetchTelegramPosts() {
