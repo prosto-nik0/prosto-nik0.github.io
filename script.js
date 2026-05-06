@@ -1,7 +1,9 @@
 const BOT_TOKEN = '8776620555:AAEprKjWryt6soMpEU8zS0J7IiLR6156vb8'; // Замените на токен вашего бота
 const CHAT_ID = '2045877032'; // Замените на ID вашего канала
 const MESSAGES_COUNT = 5; // Количество последних сообщений для отображения
+const UPDATE_INTERVAL = 5 * 60 * 1000; // 5 минут в миллисекундах
 
+// Функция для получения сообщений из Telegram
 async function fetchTelegramPosts() {
     try {
         const response = await fetch(
@@ -10,7 +12,7 @@ async function fetchTelegramPosts() {
         const data = await response.json();
 
         if (!data.ok) {
-            throw new Error('Ошибка API Telegram');
+            throw new Error('Ошибка API Telegram: ' + data.description);
         }
 
         const posts = data.result
@@ -26,6 +28,7 @@ async function fetchTelegramPosts() {
     }
 }
 
+// Функция для отображения сообщений на странице
 function displayPosts(posts) {
     const container = document.getElementById('telegram-posts');
 
@@ -46,5 +49,16 @@ function displayPosts(posts) {
     `).join('');
 }
 
-// Загружаем сообщения при загрузке страницы
-document.addEventListener('DOMContentLoaded', fetchTelegramPosts);
+// Функция для запуска периодического обновления
+function startAutoUpdate() {
+    // Загружаем сообщения сразу при загрузке страницы
+    fetchTelegramPosts();
+
+    // Устанавливаем интервал для автоматического обновления каждые 5 минут
+    setInterval(fetchTelegramPosts, UPDATE_INTERVAL);
+
+    console.log(`Автоматическое обновление запущено. Следующее обновление через ${UPDATE_INTERVAL / 60000} минут.`);
+}
+
+// Запускаем автоматическое обновление при полной загрузке страницы
+document.addEventListener('DOMContentLoaded', startAutoUpdate);
